@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keanggunan Abadi - Puisi Visual</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #d4af37;
+            --secondary-gold: #f4e4a6;
+            --dark-bg: #0a0a0a;
+            --light-bg: #f9f5f0;
+            --accent-color: #b08d57;
+            --text-dark: #333;
+            --text-light: #f5f5f5;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Raleway', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .fullscreen-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .fullscreen-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9));
+            z-index: 1;
+        }
+
+        .fullscreen-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(0.7);
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(10, 10, 10, 0.9);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 32px;
+            color: var(--primary-gold);
+            text-decoration: none;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .logo span {
+            color: var(--secondary-gold);
+            font-weight: 300;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--primary-gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-gold);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background: var(--primary-gold);
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-gold);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            color: var(--text-light);
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: 5.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--secondary-gold);
+            font-family: var(--font-heading);
+        }
+
+        .divider {
+            width: 100px;
+            height: 2px;
+            background: var(--primary-gold);
+            margin: 30px auto;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-light);
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            display: block;
+            margin-top: 10px;
+            font-size: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Photo-Poetry Sections - REVISI UTAMA */
+        .photo-poetry-section {
+            margin: 80px 0;
+            position: relative;
+        }
+
+        .photo-poetry-container {
+            display: flex;
+            min-height: 80vh;
+            align-items: stretch;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .photo-poetry-container.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .photo-side {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .photo-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .photo-side:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+            z-index: 1;
+        }
+
+        .poetry-side {
+            flex: 1;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 600px;
+            overflow: visible;
+            position: relative;
+        }
+
+        .poetry-title {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .poetry-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 2px;
+            background: var(--primary-gold);
+            bottom: 0;
+            left: 0;
+        }
+
+        .poetry-content {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 30px;
+            white-space: pre-line;
+            overflow: visible;
+            max-height: none;
+            padding-right: 10px;
+        }
+
+        /* Scrollbar khusus untuk konten puisi */
+        .poetry-content::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .poetry-content::-webkit-scrollbar-track {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .poetry-content::-webkit-scrollbar-thumb {
+            background: var(--primary-gold);
+            border-radius: 10px;
+        }
+
+        .poetry-author {
+            font-size: 1.2rem;
+            color: var(--secondary-gold);
+            text-align: right;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .poetry-divider {
+            width: 40px;
+            height: 1px;
+            background: rgba(212, 175, 55, 0.5);
+            margin: 30px 0;
+        }
+
+        /* About Section */
+        .about-section {
+            background: rgba(15, 15, 15, 0.8);
+            padding: 100px 0;
+            position: relative;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .about-title {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: var(--primary-gold);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-weight: 300;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 100px 0;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .gallery-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: var(--primary-gold);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 400px;
+            cursor: pointer;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 175, 55, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-overlay i {
+            font-size: 2.5rem;
+            color: var(--dark-bg);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: rgba(15, 15, 15, 0.8);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-title {
+            text-align: center;
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .contact-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: var(--primary-gold);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--secondary-gold);
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail i {
+            font-size: 1.2rem;
+            color: var(--primary-gold);
+            margin-right: 15px;
+            width: 30px;
+        }
+
+        .contact-detail span {
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        .contact-form {
+            flex: 1;
+            background: rgba(30, 30, 30, 0.7);
+            padding: 40px;
+            border-radius: 5px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary-gold);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 3px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border 0.3s ease;
+            background: rgba(20, 20, 20, 0.8);
+            color: var(--text-light);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+
+        .submit-btn {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(10, 10, 10, 0.95);
+            color: var(--text-light);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            max-width: 1400px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-gold);
+            border-color: var(--primary-gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px 0;
+        }
+
+        /* Responsive Design - REVISI UTAMA */
+        @media (max-width: 1200px) {
+            .photo-poetry-container {
+                flex-direction: column;
+                min-height: auto;
+                margin: 40px 20px;
+            }
+            
+            .photo-side {
+                width: 100%;
+                min-height: 500px;
+                height: 500px;
+            }
+            
+            .poetry-side {
+                width: 100%;
+                min-height: auto;
+                padding: 40px 35px;
+                height: auto;
+                overflow: visible;
+            }
+            
+            .poetry-content {
+                max-height: none;
+                overflow: visible;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .photo-side {
+                min-height: 450px;
+                height: 450px;
+            }
+            
+            .poetry-content {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(10, 10, 10, 0.95);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+                backdrop-filter: blur(10px);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .poetry-side {
+                padding: 30px 25px;
+            }
+            
+            .poetry-content {
+                font-size: 1.4rem;
+                line-height: 1.7;
+            }
+            
+            .about-title, .gallery-title, .contact-title {
+                font-size: 2.5rem;
+            }
+            
+            .photo-side {
+                min-height: 400px;
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .poetry-content {
+                font-size: 1.2rem;
+                line-height: 1.6;
+            }
+            
+            .poetry-title {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo-side {
+                min-height: 350px;
+                height: 350px;
+            }
+            
+            .poetry-side {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Fullscreen -->
+    <div class="fullscreen-bg">
+        <img src="images/back.png" alt="Background Elegant">
+    </div>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="header-content">
+            <a href="#" class="logo">anggeline<span>Storage</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#photo1">Puisi 1</a></li>
+                    <li><a href="#photo2">Puisi 2</a></li>
+                    <li><a href="#photo3">Puisi 3</a></li>
+                    <li><a href="#gallery">Galeri</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="section hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Puisi dalam Setiap Frame</h1>
+                <div class="divider"></div>
+                <p class="hero-subtitle">Di mana setiap foto bertemu dengan kata-kata, dan setiap kata melukiskan keindahan</p>
+            </div>
+            
+            <div class="scroll-indicator">
+                Jelajahi Keindahan
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo-Poetry Section 1 -->
+    <section class="section photo-poetry-section" id="photo1">
+        <div class="container">
+            <div class="photo-poetry-container">
+                <div class="photo-side">
+                    <div class="photo-overlay"></div>
+                    <img src="images/cabs3.jpg" alt="Woman with elegant gaze">
+                </div>
+                
+                <div class="poetry-side">
+                    <h2 class="poetry-title">Dalam Diamnya</h2>
+                    <div class="poetry-content">
+                        Dalam diamnya ada seribu bahasa,
+                        Dalam pandangnya tersimpan samudra rasa.
+                        Senyum yang mengukir cerita,
+                        Di sudut bibir yang penuh makna.
+                        
+                        Matanya bagai bintang di malam sunyi,
+                        Menyinari gelap dengan cahaya sendiri.
+                        Setiap hela nafas adalah syair,
+                        Yang terukir di lembaran waktu yang tak ternilai.
+                        
+                        Dia adalah puisi yang hidup,
+                        Kata-kata yang tak terucap namun terdengar,
+                        Keindahan yang tak terlukiskan,
+                        Dalam frame yang abadi.
+                    </div>
+                    <div class="poetry-author">- Untuk Keheningan yang Bermakna -</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo-Poetry Section 2 -->
+    <section class="section photo-poetry-section" id="photo2">
+        <div class="container">
+            <div class="photo-poetry-container reverse">
+                <div class="photo-side">
+                    <div class="photo-overlay"></div>
+                    <img src="images/cabs5.jpg" alt="Woman in thoughtful pose">
+                </div>
+                
+                <div class="poetry-side">
+                    <h2 class="poetry-title">Refleksi Diri</h2>
+                    <div class="poetry-content">
+                        Di cermin ia berdialog dengan jiwanya,
+                        Menatap setiap lekuk cerita yang tertulis rapi.
+                        Setiap garis di wajah adalah jejak waktu,
+                        Setiap kerutan adalah peta perjalanan batin.
+                        
+                        Di balik senyum yang tenang,
+                        Tersimpan badai yang telah reda.
+                        Di balik mata yang jernih,
+                        Mengalir sungai pengalaman yang dalam.
+                        
+                        Ia adalah arsitek takdirnya sendiri,
+                        Membangun istana dari puing-puing luka.
+                        Di setiap pilihan ada keberanian,
+                        Di setiap langkah ada keyakinan.
+                    </div>
+                    <div class="poetry-author">- Untuk Perjalanan Batin -</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo-Poetry Section 3 -->
+    <section class="section photo-poetry-section" id="photo3">
+        <div class="container">
+            <div class="photo-poetry-container">
+                <div class="photo-side">
+                    <div class="photo-overlay"></div>
+                    <img src="images/cabs2.jpg" alt="Woman in evening glamour">
+                </div>
+                
+                <div class="poetry-side">
+                    <h2 class="poetry-title">Gemerlap Senja</h2>
+                    <div class="poetry-content">
+                        Saat senja menyapa ufuk barat,
+                        Dan langit bermain dengan warna keemasan,
+                        Di situlah ia bersinar paling terang,
+                        Menjadi pusat dari segala perhatian.
+                        
+                        Gaunnya berkilauan bagai bintang jatuh,
+                        Matanya memancarkan cahaya yang hangat.
+                        Setiap gerakannya adalah tarian elegan,
+                        Setiap senyumnya adalah melodi yang merdu.
+                        
+                        Di tengah gemerlap dunia,
+                        Ia tetap menjadi dirinya sendiri.
+                        Tak silau oleh kilauan palsu,
+                        Tak lekang oleh perubahan zaman.
+                    </div>
+                    <div class="poetry-author">- Untuk Cahaya dari Dalam -</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-container">
+                <h2 class="about-title">Tentang web Ini</h2>
+                <p class="about-text">
+                    "Puisi dalam Setiap Frame" adalah ekspresi visual dan verbal yang menggabungkan keindahan fotografis dengan kedalaman puisi. Setiap foto dipilih dengan cermat untuk menangkap esensi keanggunan feminin, lalu dipasangkan dengan puisi yang ditulis khusus untuk mencerminkan jiwa dan cerita di balik gambar tersebut.
+                </p>
+                <p class="about-text">
+                    Proyek ini adalah perayaan terhadap kompleksitas, kekuatan, dan keindahan perempuan dalam segala dimensinya. Melalui kombinasi visual dan kata-kata, kita diajak untuk melihat lebih dalam, merasakan lebih kuat, dan menghargai keunikan setiap momen yang tertangkap dalam frame.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="gallery-title">Galeri angeline</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/cabs5.jpg" alt="Portrait of a woman">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/cabs6.jpg" alt="Smiling woman">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/cabs.jpg" alt="Woman with hat">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="contact-title">Terhubung dengan Cinta</h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Bagikan Inspirasi Anda</h3>
+                    <p>Jika Anda terinspirasi oleh proyek ini atau memiliki cerita Anda sendiri untuk dibagikan, kami akan senang mendengarnya. Mari berbagi keindahan melalui lensa dan kata-kata.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <span>puisivisual@keanggunan.com</span>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <span>+62</span>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Pesan atau Puisi Anda</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">KEANGGUNAN<span>ABADI</span></div>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="far fa-envelope"></i></a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Keanggunan Abadi - Puisi dalam Setiap Frame. Semua hak dilindungi.</p>
+            <p>Setiap foto adalah cerita, setiap puisi adalah jiwa.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real application, you would send this data to a server
+            // For this demo, we'll just show an alert
+            alert(`Terima kasih ${name}! Pesan dan puisi Anda telah berhasil dikirim. Kami akan menghubungi Anda di ${email} segera.`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Gallery image click effect
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                // In a real implementation, you would open a lightbox or modal here
+                alert('Untuk pengalaman penuh, galeri akan membuka mode lightbox pada implementasi lengkap.');
+            });
+        });
+        
+        // Smooth scroll to sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Adjust poetry section heights on load
+        window.addEventListener('load', function() {
+            const poetrySections = document.querySelectorAll('.poetry-side');
+            poetrySections.forEach(section => {
+                // Reset height to auto to fit content
+                section.style.height = 'auto';
+                
+                // Calculate the needed height
+                const contentHeight = section.scrollHeight;
+                const photoSide = section.parentElement.querySelector('.photo-side');
+                
+                // Set both sides to the same height
+                if (photoSide) {
+                    const maxHeight = Math.max(contentHeight + 120, 600);
+                    section.style.height = 'auto';
+                    photoSide.style.height = 'auto';
+                    
+                    // For desktop, set min-height instead
+                    if (window.innerWidth > 1200) {
+                        section.style.minHeight = maxHeight + 'px';
+                        photoSide.style.minHeight = maxHeight + 'px';
+                    }
+                }
+            });
+        });
+        
+        // Adjust on window resize
+        window.addEventListener('resize', function() {
+            const poetrySections = document.querySelectorAll('.poetry-side');
+            poetrySections.forEach(section => {
+                section.style.height = 'auto';
+                
+                const photoSide = section.parentElement.querySelector('.photo-side');
+                if (photoSide && window.innerWidth > 1200) {
+                    const contentHeight = section.scrollHeight;
+                    const maxHeight = Math.max(contentHeight + 120, 600);
+                    
+                    section.style.minHeight = maxHeight + 'px';
+                    photoSide.style.minHeight = maxHeight + 'px';
+                } else {
+                    section.style.minHeight = '';
+                    if (photoSide) photoSide.style.minHeight = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
