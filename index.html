@@ -88,22 +88,20 @@
             width: 100%;
         }
 
-        /* Header & Navigation */
+        /* Header & Navigation - Mobile Optimized */
         header {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(10, 10, 10, 0.9);
-            padding: 20px 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 15px 0;
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         header.scrolled {
-            padding: 15px 0;
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 10px 0;
         }
 
         .header-content {
@@ -117,10 +115,10 @@
 
         .logo {
             font-family: var(--font-title);
-            font-size: 32px;
+            font-size: 24px;
             color: var(--primary-gold);
             text-decoration: none;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             position: relative;
         }
 
@@ -129,35 +127,19 @@
             font-weight: 300;
         }
 
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--primary-gold);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover::after {
-            transform: scaleX(1);
-        }
-
         nav ul {
             display: flex;
             list-style: none;
         }
 
         nav ul li {
-            margin-left: 40px;
+            margin-left: 25px;
         }
 
         nav ul li a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
             transition: color 0.3s ease;
             position: relative;
             font-weight: 300;
@@ -168,21 +150,6 @@
             color: var(--primary-gold);
         }
 
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            background: var(--primary-gold);
-            left: 0;
-            bottom: -5px;
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -190,13 +157,14 @@
             color: var(--primary-gold);
             font-size: 24px;
             cursor: pointer;
+            z-index: 1001;
         }
 
-        /* Hero Section */
+        /* Hero Section - Mobile Optimized */
         .hero {
             text-align: center;
             color: var(--text-light);
-            padding-top: 100px;
+            padding-top: 80px;
         }
 
         .hero-content {
@@ -208,8 +176,8 @@
 
         .hero h1 {
             font-family: var(--font-title);
-            font-size: 5.5rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
             color: var(--primary-gold);
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
             font-weight: 700;
@@ -217,37 +185,38 @@
         }
 
         .hero-subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 40px;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: var(--secondary-gold);
             font-family: var(--font-heading);
+            padding: 0 10px;
         }
 
         .divider {
-            width: 100px;
+            width: 80px;
             height: 2px;
             background: var(--primary-gold);
-            margin: 30px auto;
+            margin: 20px auto;
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 40px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             color: var(--text-light);
-            font-size: 14px;
-            letter-spacing: 2px;
+            font-size: 12px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             animation: bounce 2s infinite;
         }
 
         .scroll-indicator i {
             display: block;
-            margin-top: 10px;
-            font-size: 20px;
+            margin-top: 5px;
+            font-size: 16px;
         }
 
         @keyframes bounce {
@@ -255,40 +224,38 @@
                 transform: translateX(-50%) translateY(0);
             }
             40% {
-                transform: translateX(-50%) translateY(-10px);
+                transform: translateX(-50%) translateY(-5px);
             }
             60% {
-                transform: translateX(-50%) translateY(-5px);
+                transform: translateX(-50%) translateY(-3px);
             }
         }
 
-        /* Photo-Poetry Sections - REVISI UTAMA */
+        /* Photo-Poetry Sections - Mobile Optimized */
         .photo-poetry-section {
-            margin: 80px 0;
+            margin: 40px 0;
             position: relative;
         }
 
         .photo-poetry-container {
             display: flex;
-            min-height: 80vh;
-            align-items: stretch;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            flex-direction: column;
+            min-height: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-radius: 5px;
             overflow: hidden;
             background: rgba(20, 20, 20, 0.7);
             backdrop-filter: blur(5px);
             border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .photo-poetry-container.reverse {
-            flex-direction: row-reverse;
+            margin: 0 10px;
         }
 
         .photo-side {
-            flex: 1;
+            width: 100%;
+            height: 50vh;
+            min-height: 300px;
             position: relative;
             overflow: hidden;
-            min-height: 600px;
         }
 
         .photo-side img {
@@ -296,9 +263,6 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.8s ease;
-            position: absolute;
-            top: 0;
-            left: 0;
         }
 
         .photo-side:hover img {
@@ -316,29 +280,29 @@
         }
 
         .poetry-side {
-            flex: 1;
-            padding: 60px 50px;
+            width: 100%;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 600px;
+            min-height: auto;
             overflow: visible;
             position: relative;
         }
 
         .poetry-title {
             font-family: var(--font-title);
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--primary-gold);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
 
         .poetry-title::after {
             content: '';
             position: absolute;
-            width: 60px;
+            width: 50px;
             height: 2px;
             background: var(--primary-gold);
             bottom: 0;
@@ -347,53 +311,31 @@
 
         .poetry-content {
             font-family: var(--font-heading);
-            font-size: 1.6rem;
-            line-height: 1.8;
+            font-size: 1.2rem;
+            line-height: 1.6;
             color: var(--text-light);
             font-style: italic;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             white-space: pre-line;
             overflow: visible;
             max-height: none;
-            padding-right: 10px;
-        }
-
-        /* Scrollbar khusus untuk konten puisi */
-        .poetry-content::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .poetry-content::-webkit-scrollbar-track {
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .poetry-content::-webkit-scrollbar-thumb {
-            background: var(--primary-gold);
-            border-radius: 10px;
         }
 
         .poetry-author {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--secondary-gold);
             text-align: right;
             font-weight: 500;
-            letter-spacing: 1px;
-            margin-top: 20px;
-            padding-top: 20px;
+            letter-spacing: 0.5px;
+            margin-top: 15px;
+            padding-top: 15px;
             border-top: 1px solid rgba(212, 175, 55, 0.3);
         }
 
-        .poetry-divider {
-            width: 40px;
-            height: 1px;
-            background: rgba(212, 175, 55, 0.5);
-            margin: 30px 0;
-        }
-
-        /* About Section */
+        /* About Section - Mobile Optimized */
         .about-section {
             background: rgba(15, 15, 15, 0.8);
-            padding: 100px 0;
+            padding: 60px 0;
             position: relative;
             border-top: 1px solid rgba(212, 175, 55, 0.1);
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
@@ -408,9 +350,9 @@
 
         .about-title {
             font-family: var(--font-title);
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             color: var(--primary-gold);
-            margin-bottom: 40px;
+            margin-bottom: 25px;
             position: relative;
             display: inline-block;
         }
@@ -418,61 +360,63 @@
         .about-title::after {
             content: '';
             position: absolute;
-            width: 100px;
+            width: 70px;
             height: 2px;
             background: var(--primary-gold);
-            bottom: -10px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
         }
 
         .about-text {
-            font-size: 1.3rem;
-            line-height: 1.8;
+            font-size: 1.1rem;
+            line-height: 1.6;
             color: var(--text-light);
-            margin-bottom: 40px;
+            margin-bottom: 25px;
             font-weight: 300;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Gallery Section */
+        /* Gallery Section - Mobile Optimized */
         .gallery-section {
-            padding: 100px 0;
+            padding: 60px 0;
         }
 
         .gallery-title {
             text-align: center;
             font-family: var(--font-title);
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             color: var(--primary-gold);
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             position: relative;
+            padding: 0 10px;
         }
 
         .gallery-title::after {
             content: '';
             position: absolute;
-            width: 100px;
+            width: 70px;
             height: 2px;
             background: var(--primary-gold);
-            bottom: -15px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 0 10px;
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 5px;
-            height: 400px;
+            height: 300px;
             cursor: pointer;
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
@@ -507,13 +451,13 @@
         }
 
         .gallery-item-overlay i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--dark-bg);
         }
 
-        /* Contact Section */
+        /* Contact Section - Mobile Optimized */
         .contact-section {
-            padding: 100px 0;
+            padding: 60px 0;
             background: rgba(15, 15, 15, 0.8);
             border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
@@ -527,96 +471,100 @@
         .contact-title {
             text-align: center;
             font-family: var(--font-title);
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             color: var(--primary-gold);
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             position: relative;
+            padding: 0 10px;
         }
 
         .contact-title::after {
             content: '';
             position: absolute;
-            width: 100px;
+            width: 70px;
             height: 2px;
             background: var(--primary-gold);
-            bottom: -15px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
         }
 
         .contact-content {
             display: flex;
-            gap: 60px;
-            align-items: flex-start;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
         }
 
         .contact-info {
-            flex: 1;
+            width: 100%;
         }
 
         .contact-info h3 {
             font-family: var(--font-heading);
-            font-size: 2.2rem;
-            margin-bottom: 25px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
             color: var(--secondary-gold);
         }
 
         .contact-info p {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-size: 1.1rem;
             color: var(--text-light);
             font-weight: 300;
         }
 
         .contact-details {
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
         .contact-detail {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .contact-detail i {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--primary-gold);
-            margin-right: 15px;
-            width: 30px;
+            margin-right: 12px;
+            width: 25px;
         }
 
         .contact-detail span {
             color: var(--text-light);
             font-weight: 300;
+            font-size: 1rem;
         }
 
         .contact-form {
-            flex: 1;
+            width: 100%;
             background: rgba(30, 30, 30, 0.7);
-            padding: 40px;
+            padding: 25px;
             border-radius: 5px;
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 500;
             color: var(--secondary-gold);
+            font-size: 0.95rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px 12px;
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 3px;
             font-family: var(--font-body);
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: border 0.3s ease;
             background: rgba(20, 20, 20, 0.8);
             color: var(--text-light);
@@ -632,13 +580,13 @@
             background: var(--primary-gold);
             color: var(--dark-bg);
             border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
+            padding: 12px 25px;
+            font-size: 1rem;
             border-radius: 3px;
             cursor: pointer;
             transition: background 0.3s ease;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             width: 100%;
         }
 
@@ -646,40 +594,40 @@
             background: var(--accent-color);
         }
 
-        /* Footer */
+        /* Footer - Mobile Optimized */
         footer {
             background-color: rgba(10, 10, 10, 0.95);
             color: var(--text-light);
-            padding: 60px 0 30px;
+            padding: 40px 0 20px;
             border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .footer-content {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             max-width: 1400px;
-            margin: 0 auto 40px;
+            margin: 0 auto 30px;
             padding: 0 20px;
         }
 
         .footer-logo {
             font-family: var(--font-title);
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--primary-gold);
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .social-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
 
         .social-links a {
             color: var(--text-light);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: color 0.3s ease;
             width: 40px;
             height: 40px;
@@ -697,140 +645,176 @@
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #aaa;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 30px 20px 0;
+            padding: 20px 20px 0;
         }
 
-        /* Responsive Design - REVISI UTAMA */
-        @media (max-width: 1200px) {
-            .photo-poetry-container {
-                flex-direction: column;
-                min-height: auto;
-                margin: 40px 20px;
-            }
-            
-            .photo-side {
-                width: 100%;
-                min-height: 500px;
-                height: 500px;
-            }
-            
-            .poetry-side {
-                width: 100%;
-                min-height: auto;
-                padding: 40px 35px;
-                height: auto;
-                overflow: visible;
-            }
-            
-            .poetry-content {
-                max-height: none;
-                overflow: visible;
-            }
-            
-            .contact-content {
-                flex-direction: column;
-            }
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
         }
 
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-            
-            .photo-side {
-                min-height: 450px;
-                height: 450px;
-            }
-            
-            .poetry-content {
-                font-size: 1.5rem;
-            }
+        .mobile-menu.active {
+            display: flex;
         }
 
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: rgba(10, 10, 10, 0.95);
-                flex-direction: column;
-                padding: 20px 0;
-                text-align: center;
-                backdrop-filter: blur(10px);
-            }
+        .mobile-menu ul {
+            list-style: none;
+            text-align: center;
+        }
 
-            nav ul.active {
-                display: flex;
-            }
+        .mobile-menu ul li {
+            margin: 20px 0;
+        }
 
+        .mobile-menu ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--primary-gold);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--primary-gold);
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design - Tablet dan Desktop */
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 28px;
+            }
+            
             nav ul li {
-                margin: 15px 0;
+                margin-left: 30px;
             }
-
-            .mobile-menu-btn {
-                display: block;
+            
+            nav ul li a {
+                font-size: 16px;
             }
-
+            
             .hero h1 {
-                font-size: 3rem;
+                font-size: 4.5rem;
             }
-
+            
             .hero-subtitle {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
             }
             
-            .poetry-side {
-                padding: 30px 25px;
-            }
-            
-            .poetry-content {
-                font-size: 1.4rem;
-                line-height: 1.7;
-            }
-            
-            .about-title, .gallery-title, .contact-title {
-                font-size: 2.5rem;
+            .photo-poetry-container {
+                flex-direction: row;
+                margin: 0;
             }
             
             .photo-side {
-                min-height: 400px;
-                height: 400px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.5rem;
+                width: 50%;
+                height: 70vh;
+                min-height: 500px;
             }
             
-            .poetry-content {
-                font-size: 1.2rem;
-                line-height: 1.6;
+            .poetry-side {
+                width: 50%;
+                padding: 40px;
             }
             
             .poetry-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
-            .gallery-grid {
-                grid-template-columns: 1fr;
+            .poetry-content {
+                font-size: 1.4rem;
             }
             
-            .photo-side {
-                min-height: 350px;
-                height: 350px;
+            .about-title, .gallery-title, .contact-title {
+                font-size: 3rem;
+            }
+            
+            .contact-content {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .contact-info, .contact-form {
+                width: 50%;
+            }
+            
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .hero h1 {
+                font-size: 5.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.8rem;
+            }
+            
+            .photo-poetry-container.reverse {
+                flex-direction: row-reverse;
             }
             
             .poetry-side {
-                padding: 25px 20px;
+                padding: 50px;
+            }
+            
+            .poetry-title {
+                font-size: 2.5rem;
+            }
+            
+            .poetry-content {
+                font-size: 1.6rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 25px;
+            }
+            
+            .gallery-item {
+                height: 350px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .photo-side {
+                height: 80vh;
+            }
+            
+            .poetry-side {
+                padding: 60px 50px;
             }
         }
     </style>
@@ -850,7 +834,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             
-            <nav>
+            <nav class="desktop-nav">
                 <ul id="navMenu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#photo1">Puisi 1</a></li>
@@ -862,6 +846,21 @@
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#photo1">Puisi 1</a></li>
+            <li><a href="#photo2">Puisi 2</a></li>
+            <li><a href="#photo3">Puisi 3</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section class="section hero" id="home">
@@ -912,11 +911,10 @@
         </div>
     </section>
 
-
     <!-- Photo-Poetry Section 3 -->
     <section class="section photo-poetry-section" id="photo3">
         <div class="container">
-            <div class="photo-poetry-container">
+            <div class="photo-poetry-container reverse">
                 <div class="photo-side">
                     <div class="photo-overlay"></div>
                     <img src="images/cabs2.jpg" alt="Woman in evening glamour">
@@ -994,7 +992,7 @@
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <h2 class="contact-title">Terhubung dengan Cinta</h2>
+            <h2 class="contact-title">Terhubung dengan Keindahan</h2>
             
             <div class="contact-content">
                 <div class="contact-info">
@@ -1011,8 +1009,6 @@
                             <i class="fas fa-phone"></i>
                             <span>+62</span>
                         </div>
-                        
-                        
                     </div>
                 </div>
                 
@@ -1030,7 +1026,7 @@
                         
                         <div class="form-group">
                             <label for="message">Pesan atau Puisi Anda</label>
-                            <textarea id="message" rows="5" required></textarea>
+                            <textarea id="message" rows="4" required></textarea>
                         </div>
                         
                         <button type="submit" class="submit-btn">Kirim Pesan</button>
@@ -1062,28 +1058,32 @@
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
         
         mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
         });
         
         // Close mobile menu when clicking a link
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(link => {
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+        mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
             });
         });
         
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
@@ -1129,57 +1129,32 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 70,
                         behavior: 'smooth'
                     });
                 }
             });
         });
         
+        // Hide mobile menu on desktop
+        function checkWindowSize() {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        window.addEventListener('resize', checkWindowSize);
+        
         // Adjust poetry section heights on load
         window.addEventListener('load', function() {
-            const poetrySections = document.querySelectorAll('.poetry-side');
-            poetrySections.forEach(section => {
-                // Reset height to auto to fit content
-                section.style.height = 'auto';
-                
-                // Calculate the needed height
-                const contentHeight = section.scrollHeight;
-                const photoSide = section.parentElement.querySelector('.photo-side');
-                
-                // Set both sides to the same height
-                if (photoSide) {
-                    const maxHeight = Math.max(contentHeight + 120, 600);
+            // Set initial adjustments for mobile
+            if (window.innerWidth < 768) {
+                const poetrySections = document.querySelectorAll('.poetry-side');
+                poetrySections.forEach(section => {
                     section.style.height = 'auto';
-                    photoSide.style.height = 'auto';
-                    
-                    // For desktop, set min-height instead
-                    if (window.innerWidth > 1200) {
-                        section.style.minHeight = maxHeight + 'px';
-                        photoSide.style.minHeight = maxHeight + 'px';
-                    }
-                }
-            });
-        });
-        
-        // Adjust on window resize
-        window.addEventListener('resize', function() {
-            const poetrySections = document.querySelectorAll('.poetry-side');
-            poetrySections.forEach(section => {
-                section.style.height = 'auto';
-                
-                const photoSide = section.parentElement.querySelector('.photo-side');
-                if (photoSide && window.innerWidth > 1200) {
-                    const contentHeight = section.scrollHeight;
-                    const maxHeight = Math.max(contentHeight + 120, 600);
-                    
-                    section.style.minHeight = maxHeight + 'px';
-                    photoSide.style.minHeight = maxHeight + 'px';
-                } else {
-                    section.style.minHeight = '';
-                    if (photoSide) photoSide.style.minHeight = '';
-                }
-            });
+                });
+            }
         });
     </script>
 </body>
